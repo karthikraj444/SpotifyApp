@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import pickle
 
-# loading data too fit the model
+# loading data to fit the model
 
 data = pd.read_csv('data.csv')
 data_fit = data[['acousticness','energy','danceability','instrumentalness','liveness','speechiness','tempo']]
@@ -28,7 +28,7 @@ def recommend_songs(song_name, year):
     else:
         # selecting song cluster
         cluster = song_clusters[song.index[0]]
-
+        
         # top songs from each cluster (TOP 5)
         cluster_songs = data[data['cluster'] == cluster]
         top_songs = cluster_songs.sort_values(by='popularity', ascending=False).head(15)['name'].tolist()
